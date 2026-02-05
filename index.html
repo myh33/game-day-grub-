@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stadium Order | Bestel Nu</title>
+    <style>
+        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        header { border-bottom: 2px solid #ff9800; padding-bottom: 10px; margin-bottom: 20px; }
+        h1 { color: #ff9800; text-transform: uppercase; letter-spacing: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .item { background: #1e1e1e; border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; }
+        .item:hover { border-color: #ff9800; transform: translateY(-5px); }
+        .price { color: #ff9800; font-weight: bold; font-size: 1.2rem; }
+        .order-btn { background: #ff9800; color: #000; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .order-btn:hover { background: #e68a00; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏟️ Stadium Order</h1>
+        <p>Kies je snacks en drankjes</p>
+    </header>
+
+    <div class="grid" id="menu-grid"></div>
+
+    <script>
+        // Jouw menukaart - Je kunt hier zelf namen en prijzen aanpassen
+        const menu = [
+            { naam: "Classic Stadium Burger", prijs: 8.50 },
+            { naam: "Grote Friet", prijs: 4.50 },
+            { naam: "Hotdog Special", prijs: 6.00 },
+            { naam: "Bier (0.5L)", prijs: 5.50 },
+            { naam: "Cola / Fanta", prijs: 3.50 },
+            { naam: "Nacho's met kaas", prijs: 5.00 }
+        ];
+
+        const grid = document.getElementById('menu-grid');
+        menu.forEach(item => {
+            grid.innerHTML += `
+                <div class="item">
+                    <h3>${item.naam}</h3>
+                    <p class="price">€${item.prijs.toFixed(2)}</p>
+                    <button class="order-btn" onclick="alert('Toegevoegd: ${item.naam}')">BESTEL</button>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
