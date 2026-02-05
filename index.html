@@ -3,69 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Day Grub</title>
+    <title>Game Day Grub | Official Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --orange: #ff9800;
+            --dark-bg: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --green-action: #2ecc71;
+        }
+
         body { 
-            background-color: #0a0a0a; 
+            background-color: var(--dark-bg); 
             color: white; 
-            font-family: sans-serif; 
-            margin: 0; 
-            text-align: center;
+            font-family: 'Inter', sans-serif; 
+            margin: 0; padding: 0;
+            -webkit-font-smoothing: antialiased;
         }
+
+        h1, h2, .brand-text { font-family: 'Bebas Neue', cursive; letter-spacing: 1px; margin: 0; }
+
+        /* Logo & Header */
+        .main-header { padding: 20px; text-align: center; background: #000; }
+        .logo-wrap { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .logo-box { width: 35px; height: 35px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 22px; }
+        .brand-text { font-size: 2.2rem; }
+        .brand-text span { color: var(--orange); }
+
+        /* Hero / Welcome */
         #hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(#111, #000);
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1200');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: left; padding: 40px;
         }
-        .logo-box { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-        .logo-sq { width: 40px; height: 40px; background: #ff9800; border-radius: 8px; color: black; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        h1 { font-size: 2.5rem; margin: 10px 0; }
-        span { color: #ff9800; }
-        p { color: #888; max-width: 300px; margin-bottom: 30px; }
-        .btn { 
-            padding: 15px 30px; border-radius: 10px; border: none; 
-            font-weight: bold; cursor: pointer; width: 250px; margin: 5px;
-            text-transform: uppercase;
-        }
-        .btn-orange { background: #ff9800; color: black; }
-        .btn-white { background: white; color: black; }
+
+        #hero h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 10px; }
+        #hero p { font-size: 1.1rem; color: #ccc; max-width: 340px; margin-bottom: 30px; }
+
+        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn { padding: 12px 25px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        .btn-delivery { background: var(--orange); color: #000; }
+        .btn-pickup { background: #fff; color: #000; }
+
+        /* Menu Grid */
+        #menu-view { display: none; padding: 20px; padding-bottom: 100px; }
+        .section-label { color: var(--orange); font-size: 0.8rem; margin: 20px 0 10px 0; font-weight: bold; }
         
-        /* App gedeelte (verstopt tot start) */
-        #app { display: none; padding: 20px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .card { background: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #333; }
-        .card img { width: 100%; border-radius: 5px; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .product-card { 
+            background: var(--card-bg); border-radius: 20px; border: 1px solid #333; 
+            overflow: hidden; position: relative; 
+        }
+        .product-card img { width: 100%; height: 120px; object-fit: cover; filter: brightness(0.8); }
+        .product-info { padding: 15px; }
+        .product-info h3 { margin: 0; font-size: 0.9rem; font-weight: 700; }
+        .product-info .price { color: var(--orange); font-size: 0.8rem; margin-top: 5px; font-weight: bold; }
+
+        .add-circle {
+            position: absolute; bottom: 12px; right: 12px;
+            background: var(--green-action); width: 28px; height: 28px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #000; font-weight: bold; cursor: pointer; border: none;
+        }
+
+        /* Bottom Navigation */
+        footer-nav {
+            position: fixed; bottom: 0; width: 100%; background: #000;
+            display: flex; justify-content: space-around; padding: 15px 0;
+            border-top: 1px solid #222; z-index: 1000;
+        }
+        .nav-item { background: none; border: none; color: #666; font-size: 0.7rem; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .nav-item.active { color: var(--orange); }
+        .cart-dot { background: var(--orange); color: #000; padding: 2px 6px; border-radius: 10px; font-size: 9px; margin-left: 4px; }
+
     </style>
 </head>
 <body>
 
-    <div id="hero">
-        <div class="logo-box">
-            <div class="logo-sq">G</div>
-            <div style="font-size: 2rem; font-weight: bold;">GAME DAY <span>GRUB</span></div>
+    <header class="main-header">
+        <div class="logo-wrap">
+            <div class="logo-box">G</div>
+            <div class="brand-text">GAME DAY <span>GRUB</span></div>
         </div>
-        <h1>SLA DE RIJ OVER</h1>
-        <p>Bestel je snacks vanaf je stoel en mis geen seconde.</p>
-        <button class="btn btn-orange" onclick="start()">Bezorgen op stoel</button>
-        <button class="btn btn-white" onclick="start()">Zelf afhalen</button>
-    </div>
+    </header>
 
-    <div id="app">
-        <h2 style="color:#ff9800;">MENU</h2>
-        <div class="grid">
-            <div class="card"><img src="https://via.placeholder.com/150/ff9800/000000?text=Burger"><h3>Burger</h3><p>€8.50</p></div>
-            <div class="card"><img src="https://via.placeholder.com/150/ff9800/000000?text=Friet"><h3>Friet</h3><p>€4.50</p></div>
+    <section id="hero">
+        <h1>Sla de <br><span>wachtrij</span> over.</h1>
+        <p>Bestel je favoriete snacks en drankjes direct vanaf je stoel.</p>
+        <div class="btn-row">
+            <button class="btn btn-delivery" onclick="showMenu()">BEZORGEN</button>
+            <button class="btn btn-pickup" onclick="showMenu()">ZELF AFHALEN</button>
         </div>
-    </div>
+    </section>
+
+    <section id="menu-view">
+        <div class="section-label">POPULAIR DEZE WEDSTRIJD</div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400">
+                <div class="product-info"><h3>Premium Burger</h3><div class="price">€ 8.50</div></div>
+                <button class="add-circle" onclick="updateCart()">+</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400">
+                <div class="product-info"><h3>Stadion Friet</h3><div class="price">€ 4.50</div></div>
+                <button class="add-circle" onclick="updateCart()">+</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400">
+                <div class="product-info"><h3>Koud Bier</h3><div class="price">€ 6.00</div></div>
+                <button class="add-circle" onclick="updateCart()">+</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1541214113241-21578d2d9b62?w=400">
+                <div class="product-info"><h3>Hotdog XL</h3><div class="price">€ 5.50</div></div>
+                <button class="add-circle" onclick="updateCart()">+</button>
+            </div>
+        </div>
+    </section>
+
+    <footer-nav>
+        <button class="nav-item active">MENU</button>
+        <button class="nav-item">CART <span class="cart-dot" id="cart-val">0</span></button>
+        <button class="nav-item">MY ORDER</button>
+    </footer-nav>
 
     <script>
-        function start() {
+        let count = 0;
+        function showMenu() {
             document.getElementById('hero').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
+            document.getElementById('menu-view').style.display = 'block';
+        }
+        function updateCart() {
+            count++;
+            document.getElementById('cart-val').innerText = count;
         }
     </script>
+
 </body>
 </html>
