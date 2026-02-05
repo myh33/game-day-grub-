@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Day Grub | Stadium Delivery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #ff9800;
+            --green: #2ecc71;
+            --dark: #0a0a0a;
+            --card: #1a1a1a;
+        }
+
+        body { 
+            background-color: var(--dark); 
+            color: white; 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, .brand { font-family: 'Bebas Neue', cursive; }
+
+        /* Logo Stijl */
+        .logo-box { display: flex; align-items: center; gap: 10px; justify-content: center; padding: 15px; }
+        .logo-square { width: 35px; height: 35px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold; font-size: 20px; }
+        .brand-text { font-size: 1.8rem; letter-spacing: 1px; }
+        .brand-text span { color: var(--orange); }
+
+        /* Sections */
+        .page { display: none; padding-bottom: 100px; animation: fadeIn 0.3s; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Hero / Landing */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1200');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+        }
+        #hero h1 { font-size: 3.5rem; margin: 0; color: white; }
+        #hero p { font-size: 1.1rem; color: #bbb; max-width: 400px; margin: 20px 0; }
+
+        .btn { padding: 16px 32px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 280px; margin-bottom: 10px; font-size: 1rem; }
+        .btn-orange { background: var(--orange); color: black; }
+        .btn-white { background: white; color: black; }
+
+        /* Menu Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
+        .card { background: var(--card); border-radius: 15px; border: 1px solid #333; overflow: hidden; position: relative; }
+        .card img { width: 100%; height: 110px; object-fit: cover; }
+        .card-body { padding: 10px; }
+        .card-body h3 { margin: 0; font-size: 0.9rem; }
+        .card-body .price { color: var(--orange); font-weight: bold; margin-top: 5px; }
+        .add-btn { position: absolute; bottom: 10px; right: 10px; background: var(--green); border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; }
+
+        /* Cart & Form */
+        .container { padding: 20px; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 15px 0; }
+        input { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 8px; box-sizing: border-box; }
+        
+        .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; }
+        .total-box { background: #111; padding: 20px; border-radius: 15px; margin-top: 20px; border: 1px solid var(--orange); }
+
+        /* Navigatie */
+        nav { position:
