@@ -3,161 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Day Grub | Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Game Day Grub</title>
     <style>
-        :root {
-            --orange: #ff9800;
-            --dark-bg: #0d0d0d;
-            --card-bg: #1a1a1a;
-            --green: #2ecc71;
-            --text-grey: #888;
+        /* Dit is de styling die zorgt dat het op het plaatje gaat lijken */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 0;
         }
-
-        body { 
-            background-color: var(--dark-bg); 
-            color: white; 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; padding: 0;
+        header {
+            background-color: #e63946;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-
-        /* Top Header uit de foto */
-        .top-nav {
-            background-color: #000;
-            padding: 15px;
+        nav {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid #222;
+            background: #222;
+            padding: 10px;
         }
-
-        .logo-icon {
-            width: 30px; height: 30px;
-            border: 2px solid var(--orange);
-            border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
         }
-
-        .logo-text {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
         }
-
-        .logo-text span { color: var(--orange); }
-
-        /* Hero / Landing Section */
-        #landing {
-            padding: 40px 20px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800');
-            background-size: cover;
-            min-height: 300px;
-            display: flex; flex-direction: column; justify-content: center;
+        .card {
+            background: #333;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #e63946;
         }
-
-        h1 { font-size: 2rem; margin: 0; line-height: 1.2; }
-        .hero-desc { color: var(--text-grey); margin: 15px 0 25px 0; font-size: 1rem; max-width: 300px; }
-
-        .btn-row { display: flex; gap: 10px; }
-        .btn { 
-            padding: 12px 20px; border-radius: 8px; border: none; font-weight: bold; 
-            font-size: 0.8rem; cursor: pointer; text-transform: uppercase;
+        button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
-        .btn-orange { background: var(--orange); color: #000; }
-        .btn-white { background: #fff; color: #000; }
-
-        /* Menu Grid uit de foto */
-        #main-menu { padding: 20px; padding-bottom: 100px; }
-        .section-title { font-size: 0.7rem; color: var(--text-grey); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
-        
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        
-        .product-card { 
-            background: var(--card-bg); 
-            border-radius: 12px; 
-            border: 1px solid #222; 
-            overflow: hidden; 
-            position: relative;
+        button:hover {
+            background-color: #c12e3a;
         }
-        
-        .img-placeholder { height: 100px; background: #222; position: relative; }
-        .img-placeholder img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-
-        .product-info { padding: 12px; }
-        .product-info h3 { font-size: 0.85rem; margin: 0; font-weight: 600; }
-        .product-info .price { color: var(--orange); font-size: 0.8rem; margin-top: 5px; font-weight: bold; }
-
-        .add-icon {
-            position: absolute; bottom: 10px; right: 10px;
-            background: var(--green); width: 22px; height: 22px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: #000; font-weight: bold; font-size: 14px; border: none;
+        #menu-content {
+            display: none; /* Wordt getoond via JS */
+            margin-top: 15px;
         }
-
-        /* Bottom Nav Bar uit de foto */
-        .bottom-nav {
-            position: fixed; bottom: 0; width: 100%;
-            background: #000; border-top: 1px solid #222;
-            display: flex; justify-content: space-around; padding: 12px 0;
-        }
-
-        .nav-item { 
-            background: none; border: none; color: var(--text-grey); 
-            font-size: 0.6rem; font-weight: bold; display: flex; flex-direction: column; align-items: center; gap: 4px;
-        }
-        .nav-item.active { color: var(--orange); }
-        .cart-badge { background: var(--orange); color: #000; padding: 1px 5px; border-radius: 10px; font-size: 8px; }
-
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
-        <div class="logo-icon"><span style="color:var(--orange); font-weight:bold;">G</span></div>
-        <div class="logo-text">GAME DAY <span>GRUB</span></div>
-    </div>
+<header>
+    <h1>Game Day Grub</h1>
+    <p>The Ultimate Sports Snack Planner</p>
+</header>
 
-    <section id="landing">
-        <h1>Sla de wachtrij over.</h1>
-        <p class="hero-desc">Bestel je favoriete snacks en drankjes direct vanaf je stoel.</p>
-        <div class="btn-row">
-            <button class="btn btn-orange">Bezorgen</button>
-            <button class="btn btn-white">Afhalen</button>
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Recipes</a>
+    <a href="#">My List</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <h2>Welkom bij de App</h2>
+        <p>Klik op de knop hieronder om het menu te openen. Als dit werkt, weten we dat de JavaScript ook goed staat!</p>
+        <button onclick="toggleMenu()">Bekijk Snacks</button>
+        
+        <div id="menu-content">
+            <h3>Onze Favorieten:</h3>
+            <ul>
+                <li>🔥 Buffalo Chicken Wings</li>
+                <li>🧀 Loaded Nachos</li>
+                <li>🍔 Sliders Deluxe</li>
+            </ul>
         </div>
-    </section>
-
-    <section id="main-menu">
-        <div class="section-title">Populair op dit moment</div>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="img-placeholder"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200"></div>
-                <div class="product-info"><h3>Premium Burger</h3><div class="price">€ 8.50</div></div>
-                <button class="add-icon">+</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200"></div>
-                <div class="product-info"><h3>Stadion Friet</h3><div class="price">€ 4.50</div></div>
-                <button class="add-icon">+</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=200"></div>
-                <div class="product-info"><h3>Koud Bier</h3><div class="price">€ 6.00</div></div>
-                <button class="add-icon">+</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder"><img src="https://images.unsplash.com/photo-1541214113241-21578d2d9b62?w=200"></div>
-                <div class="product-info"><h3>Hotdog XL</h3><div class="price">€ 5.50</div></div>
-                <button class="add-icon">+</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="bottom-nav">
-        <button class="nav-item active">MENU</button>
-        <button class="nav-item">🛒 CART <span class="cart-badge">0</span></button>
-        <button class="nav-item">📋 MY ORDER</button>
     </div>
+</div>
+
+<script>
+    // Dit script staat nu IN het bestand, dus geen 404 fouten meer!
+    function toggleMenu() {
+        var content = document.getElementById("menu-content");
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+</script>
 
 </body>
 </html>
